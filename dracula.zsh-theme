@@ -17,8 +17,18 @@ source ${0:A:h}/lib/async.zsh
 autoload -Uz add-zsh-hook
 setopt PROMPT_SUBST
 async_init
-PROMPT=''
+
+PROMPT="%F{085}%n@%m%f"
+
+# awscli segment {{{
+dracula_aws() {
+	print -P '<$(agp)/$(agr)>'
+}
+
+PROMPT+='%F{172}$(dracula_aws)'
 # }}}
+
+PROMPT+="%F{blue}:%f"
 
 # Options {{{
 # Set to 0 to disable the git status
@@ -87,7 +97,7 @@ dracula_arrow() {
 
 # arrow is green if last command was successful, red if not, 
 # turns yellow in vi command mode
-PROMPT+='%(1V:%F{yellow}:%(?:%F{green}:%F{red}))%B$(dracula_arrow start)'
+# PROMPT+='%(1V:%F{yellow}:%(?:%F{green}:%F{red}))%B$(dracula_arrow start)'
 # }}}
 
 # Time segment {{{
@@ -125,6 +135,9 @@ dracula_directory() {
 
 PROMPT+='%F{blue}%B$(dracula_directory)'
 # }}}
+
+PROMPT+=""$'\n'""
+PROMPT+='%(1V:%F{yellow}:%(?:%F{green}:%F{red}))%B$(dracula_arrow start)'
 
 # Custom variable {{{
 custom_variable_prompt() {
@@ -189,7 +202,7 @@ PROMPT+='$DRACULA_GIT_STATUS'
 
 ZSH_THEME_GIT_PROMPT_CLEAN=") %F{green}%B✔ "
 ZSH_THEME_GIT_PROMPT_DIRTY=") %F{yellow}%B✗ "
-ZSH_THEME_GIT_PROMPT_PREFIX="%F{cyan}%B("
+ZSH_THEME_GIT_PROMPT_PREFIX="%F{cyan}%b("
 ZSH_THEME_GIT_PROMPT_SUFFIX="%f%b"
 # }}}
 
