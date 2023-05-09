@@ -136,9 +136,6 @@ dracula_directory() {
 PROMPT+='%F{blue}%B$(dracula_directory)'
 # }}}
 
-PROMPT+=""$'\n'""
-PROMPT+='%(1V:%F{yellow}:%(?:%F{green}:%F{red}))%B$(dracula_arrow start)'
-
 # Custom variable {{{
 custom_variable_prompt() {
 	[[ -z "$DRACULA_CUSTOM_VARIABLE" ]] && return
@@ -205,6 +202,9 @@ ZSH_THEME_GIT_PROMPT_DIRTY=") %F{yellow}%B✗ "
 ZSH_THEME_GIT_PROMPT_PREFIX="%F{cyan}%b("
 ZSH_THEME_GIT_PROMPT_SUFFIX="%f%b"
 # }}}
+
+PROMPT+=""$'\n'""
+PROMPT+='%(1V:%F{yellow}:%(?:%F{green}:%F{red}))%B$(dracula_arrow start)'
 
 # Linebreak {{{
 PROMPT+='%(1V:%F{yellow}:%(?:%F{green}:%F{red}))%B$(dracula_arrow end)'
